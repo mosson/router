@@ -2,7 +2,6 @@ package router
 
 import (
 	"net/http"
-	"net/url"
 	"testing"
 )
 
@@ -41,7 +40,6 @@ func TestRouter(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	r.Form = make(url.Values)
 
 	router.Handle(nil, r, "/api/v1/users/123")
 

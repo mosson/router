@@ -2,6 +2,7 @@ package router
 
 import (
 	"net/http"
+	"net/url"
 
 	"github.com/mosson/lex"
 )
@@ -45,6 +46,9 @@ func (router *Router) Handle(w http.ResponseWriter, r *http.Request, path string
 		parser := *parserPtr
 		result := parser(path, 0)
 		if result.Success {
+			if r.Form == nil {
+				r.Form = make(url.Values, 0)
+			}
 
 			for key, value := range result.Attributes {
 				if r.Form[key] == nil {
